@@ -3,11 +3,11 @@ using System.Runtime.InteropServices.JavaScript;
 using Microsoft.JSInterop;
 using Microsoft.JSInterop.Implementation;
 
-namespace KPX.Graphics;
+namespace KPXEngine.Graphics;
 
 public class Image {
     public readonly string src;
-    internal JSObject JSImageObject;
+    internal JSObject reference;
 
     private Image(string src) {
         this.src = src;
@@ -17,13 +17,8 @@ public class Image {
 
     public static Image Create(string src) {
         Image image = new(src);
-        image.JSImageObject = WASM.CreateImage(src);
-        // image.init();
+        Action onLoad = () => image.isLoaded = true;
+        image.reference = WASM.CreateImage(src, onLoad);
         return image;
-    }
-
-    public void init() {
-        Action update = () => isLoaded = true;
-        WASM.lisenCallback(JSImageObject, "onload", update);
     }
 }

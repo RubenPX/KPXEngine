@@ -5,10 +5,9 @@
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-
         <PublishTrimmed>true</PublishTrimmed>
-
         <LangVersion>default</LangVersion>
+        <OutputType>Library</OutputType>
     </PropertyGroup>
 
     <ItemGroup>
@@ -17,8 +16,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Extensions\" />
-      <Folder Include="Resources\" />
+      <ProjectReference Include="..\KPXEngine\KPXEngine.csproj" />
     </ItemGroup>
 
 </Project>
